@@ -36,13 +36,17 @@ selectFrom.value = 'USD'
 selectTo.value = 'INR'
 try {
     btn.addEventListener('click', async () => {
+        try{
 
-        let url = await fetch(`${BASE_URL}/${selectTo.value}_${selectFrom.value}.json`);
-        let data = await url.json();
-        let rate = data.rate;
-        let inp = rate * input.value;
-        let roundOF = Math.floor(inp);
-        result.innerText = roundOF;
+            let url = await fetch(`${BASE_URL}/${selectTo.value}_${selectFrom.value}.json`);
+            let data = await url.json();
+            let rate = data.rate;
+            let inp = rate * input.value;
+            let roundOF = Math.floor(inp);
+            result.innerText = roundOF;
+        }catch(er){
+            result.innerText = 'Value not found'
+        }
 
     })
 } catch (err) {
